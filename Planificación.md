@@ -54,7 +54,8 @@ ficha pueda ser colocada es que genere un encierro tipo sandwich.
  	* Determinar fin del juego.
   	* Almacenado de scores.
   	* Almacenado histórico de partidas.
-  	* Cambio de turno entre jugadores.  	  
+  	* Cambio de turno entre jugadores.
+  	* Mostrar movimientos válidos.  
 * Clases
 
 
