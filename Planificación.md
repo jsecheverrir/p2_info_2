@@ -37,10 +37,13 @@ Subir el código fuente al repositorio.
 ![Captura de pantalla 2023-10-24 213148](https://github.com/Sebastian-8a/Parcial-2---Inform-tica-2/assets/129414377/dee0c46b-d65c-485d-9cdd-a8625890bbe8)
 * Los jugadores se turnan para colocar una ficha de su color en el tablero. El jugador con las fichas negras comienza, la condición para que la
 ficha pueda ser colocada es que genere un encierro tipo sandwich.
-# Aquí Juana va a terminar de poner el desarrollo y reglas del juego
+# Si un jugador no puede hacer un movimiento válido, pasa su turno.
 
+#El juego continúa hasta que ningún jugador puede realizar movimientos válidos o el tablero se llena.
 
+#Se cuentan las fichas de cada color en el tablero.
 
+#El jugador con más fichas de su color gana la partida.
 
 
 ## Aspectos a tener en cuenta durante el desarrollo.
@@ -56,9 +59,12 @@ ficha pueda ser colocada es que genere un encierro tipo sandwich.
   	* Almacenado histórico de partidas.
   	* Cambio de turno entre jugadores.
   	* Mostrar movimientos válidos.  
-* Clases
+* Clases (Tenemos 2 opciones, a definir)
+
+1 clase; juego: se considera crear simplemente una clase que represente todo el juego en sí, implementar dentro de esta clase los métodos y atributos que permitan el flujo de juego. Se plantea una sola clase ya que así podemos simplificar el diseño del código, que este sea mas fácil de manejar. También posibilita la gestión de componentes (jugadores, fichas) y reglas de juego (que dictan cada uno de los movimientos) en un solo lugar, al tenerlo compacto, tendremos un código mas legible y manejable. De usar esta sola clase, podríamos garantizar la encapsulación del codigo y así tendriamos todos los metodos en una sola unidad, y por último, al ser una sola clase, es mas fácil adaptarse a cambios de diseño, por ejemplo, que el usuario elija la dimensión del tablero.
 
 
+2 clases; jugador y tablero: se piensa entonces la separación de la clase mencionada anteriormente para brindar modularidad al código, planteando 2 clases, una de jugador y otra de tablero, la de jugador tendría atributos como el nombre, el tipo de ficha, y la de tablero tendría entonces la estructura del tablero, dimensiones, estado de juego. Se dice entonces que la separacion del código en 2 clases seguiríamos el principio de separación de responsabilidades, donde cada clase tiene una tarea específica. También facilita la reutilización del código, ya que son clases bastante generales, y en cualquier juego podemos encontrar judores. A su vez, en casi todos los juegos podemos encontrar un tablero, que puede ser adaptado. De igual forma, a estar más separado el código, más legible será, ya que es evidente cual es la función de cada clase, y el seguimiento de nuestro código se favorece. Además tambien posibilita la detección de errores en el código.
 
 # Desarrollo e ideas.
 Crear un arreglo bidimensional 8*8 el cual representará nuestro tablero, con la posibilidad de escalarlo de forma parfamétrica con la intención de expandir el tamaño del tablero a futuro; En este caso usar una constante definida para este caso con el número 8, la cual será usada a lo largo de todo el programa. Llamemos a la constante N
@@ -73,16 +79,25 @@ Generar **Algoritmo que encuentre caminos posibles**, inicialmente siempre será
 
 Una vez tengo los movimientos válidos, muestro el tablero y los movimientos por pantalla para solicitar una entrada.
 	 
-* Debo validar que la entrada sea con el formato establecido.
+* Debo validar que la entrada sea con el formato establecido. Ej "G4" primer caracter debe ser una letra, segundo caracter debe ser un numero ambos rangos determinados por el tablero.
 	 
 * Validar que la entrada se encuentre en los movimientos válidos.
+De ser válida la entrada, se procede a hacer el movimiento y se actualiza el tablero, si no es valido se debe pedir entrada nuevamente.
+
+Una vez actualizado el tablero, se pide movimiento al siguiente jugador. Seguimos el mismo proceso hasta que no hayan movimientos válidos (que el movimiento no genere un encierro tipo sandwich o que el tablero ya no tenga lugar para más fichas nuevas).
+
+Para este momento debemos tener un ganador, se procede a recorrer el tablero con un puntero que cuente el numero de fichas de cada jugador para asi definir el ganador. 
+
+Cuando sabemos quien ganó, pedimos nombres de jugadores y almacenamos en un archivo txt (sujeto a cambios), la partida para tener un historial de juego.
+
+Implementar función para leer el archivo que almacenará las partidas jugadas anteriormente, y muestre al usuario de forma amigable dicho historial.
 
 
 
 
 
 
+Caminos posibles -> Se le debe pasar la estructura.
 
 
 
-  Caminos posibles -> Se le debe pasar la estructura.
