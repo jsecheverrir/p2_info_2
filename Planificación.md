@@ -115,3 +115,119 @@ Implementar función para leer el archivo que almacenará las partidas jugadas a
 
 Caminos posibles -> Se le debe pasar la estructura.
 
+* 1 clase:
+  	Esqueleto del código:
+  		#include <iostream>
+		using namespace std;
+		
+		class juego {
+		public:
+		    juego();
+		    ~juego();
+		    void jugar();
+		    
+		private:
+		    char **tab;		//Tablero
+		    char p1, p2;	//Jugadores
+		    
+		    void tablero();				//Función que crea el tablero de juego
+		    bool verif_movimiento(int fila, int col);	//Función que verifica si en cada turno el movimiento a realizar es 									váildo
+		    void movi(int fila, int col);		//Función donde se describe cómo se pueden hacer los movimientos
+		    bool terminacion();				//Verifica si el juego ha terminado
+		    void jugadores();				//Determina qué jugador tiene el turno
+		};
+		
+		juego::juego() {
+		    //Usamos el constructor para crear de forma dinámica el arreglo que será el tablero
+		}
+		
+		juego::~juego() {
+		    //Aquí libreamos la memoria
+		}
+		
+		void juego::tablero() {
+		    //Implementar el código para dar inicialización al tablero
+		    //Impresión del tablero en consola
+		}
+		
+		bool juego::verif_movimiento(int fila, int col) {
+		    // Implementar las reglas para que un movimiento sea válido
+		    return true;	//True cuando el movimiento sí se pueda hacer
+		}
+		
+		void juego::movi(int fila, int col) {
+		    // Implementar cómo funcionan la fichas en cada movimiento
+		}
+		
+		bool juego::terminacion() {
+		    // Implementar las reglas o condiciones que hacen que el juego termine
+		    return false;	//Falso en cada turno hasta que la condición o regla se cumpla
+		}
+		
+		void juego::jugadores() {
+		    //Implementar las reglas que determinan cómo cambian los turnos de los jugadores
+		}
+		
+		void juego::jugar() {
+		    while (!terminacion()) {	//Mientras el juego no termine se ejecutará el ciclo
+		        //Parte visual y entrada de datos para el juego
+		
+		        if (verif_movimiento(fila, col)) {
+		            //si el movimiento es válido se implementan los métodos del movimiento 
+			    //y el intercambiar el turno de los jugadores
+		        } else {
+		            //Mensaje de movimiento no válido
+		        }
+		    }
+		
+		    //Fin del juego
+		}
+
+
+  	* Por qué usar este esqueleto:
+	1. Estructura Básica: El código establece una estructura básica para el juego. Define una clase juego que contiene métodos para 	inicializar el tablero, verificar movimientos válidos, realizar movimientos, determinar el final del juego y alternar entre 		jugadores.
+	2. Utiliza una matriz dinámica (char **tab) para representar el tablero. Esto es importante para el juego de Othello, ya que el 	tablero es una parte central de la mecánica del juego. Esta matriz se crea de manera dinámica en el constructor y se libera en 		el destructor, lo que es un buen enfoque para la gestión de memoria.
+	3. El código proporciona esqueletos de métodos como verif_movimiento(), movi(), terminacion(), y jugadores(). Estos métodos son 	fundamentales para la lógica del juego y pueden ser completados con las reglas específicas de Othello.
+	4. La función jugar() establece un ciclo de juego que se ejecuta hasta que se cumple una condición de finalización. Así 		mantenemos el flujo del juego.
+
+ 	* Función a función
+	 1. Constructor y Destructor de juego:
+		Constructor:
+		Reserva memoria dinámica para el tablero, una matriz dinámica de 8x8.
+		Inicializar los caracteres p1 y p2 para representar a los jugadores.
+		Llamar a la función tablero() para inicializar el tablero.
+	Destructor:
+		Liberar la memoria dinámica utilizada por el tablero.
+	
+	2. Función tablero():
+		Esta función se encarga de configurar el tablero y mostrar su estado 	inicial en la consola.
+		Podemos implementar un bucle para inicializar el tablero con fichas 	iniciales y mostrarlo en la consola.
+	3. Función verif_movimiento(int fila, int col):
+		Esta función verifica si un movimiento es válido.
+		Debemos comprobar si la casilla en las coordenadas (fila, col) está vacía 	y si el movimiento produce un encierro 			tipo "sandwich" de fichas del 	oponente.
+		Devolvee true si el movimiento es válido y false en caso contrario.
+	4. Función movi(int fila, int col):
+		Esta función implementa cómo funcionan las fichas en cada movimiento.
+		Debemos realizar las siguientes acciones:
+		Cambiar el color de las fichas según las reglas de Othello.
+		Actualizar el tablero con las nuevas fichas.
+		Realizar cualquier otro procesamiento relacionado con el movimiento. 	(Mirar reglas de juego)
+	5. Función terminacion():
+		Esta función verifica si el juego ha terminado.
+		Debemos comprobar si no hay movimientos válidos disponibles para ninguno 	de los jugadores o si el tablero está 			completamente lleno.
+		Devuelve false si el juego no ha terminado y true si se cumple alguna de 	las condiciones de finalización.
+	6. Función jugadores():
+		Esta función determina cómo cambian los turnos de los jugadores.
+		Puede ser alternar entre los caracteres p1 y p2 en cada turno.
+	7. Función jugar():
+		Esta función es el bucle principal del juego.
+		Debemos implementar un ciclo while que se ejecuta mientras el juego no 	haya terminado (usando la función terminacion()).
+		En cada iteración del ciclo:
+		Muestra el estado actual del tablero en la consola.
+		Solicita la entrada del jugador para obtener su movimiento.
+		Utiliza verif_movimiento() para verificar si el movimiento es válido.
+		Si es válido, llama a movi() para realizar el movimiento y actualiza el tablero.
+		Cambia el turno de los jugadores llamando a jugadores().
+		Repite hasta que el juego termine.
+		Al final del juego, muestra el resultado final y determina el ganador.
+
