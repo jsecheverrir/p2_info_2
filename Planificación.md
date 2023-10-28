@@ -200,22 +200,22 @@ Caminos posibles -> Se le debe pasar la estructura.
 		Liberar la memoria dinámica utilizada por el tablero.
 	
 	2. Función tablero():
-		Esta función se encarga de configurar el tablero y mostrar su estado 	inicial en la consola.
-		Podemos implementar un bucle para inicializar el tablero con fichas 	iniciales y mostrarlo en la consola.
+		Esta función se encarga de configurar el tablero y mostrar su estado inicial en la consola.
+		Podemos implementar un bucle para inicializar el tablero con fichas iniciales y mostrarlo en la consola.
 	3. Función verif_movimiento(int fila, int col):
 		Esta función verifica si un movimiento es válido.
-		Debemos comprobar si la casilla en las coordenadas (fila, col) está vacía 	y si el movimiento produce un encierro 			tipo "sandwich" de fichas del 	oponente.
+		Debemos comprobar si la casilla en las coordenadas (fila, col) está vacía y si el movimiento produce un encierro 			tipo "sandwich" de fichas del 	oponente.
 		Devolvee true si el movimiento es válido y false en caso contrario.
 	4. Función movi(int fila, int col):
 		Esta función implementa cómo funcionan las fichas en cada movimiento.
 		Debemos realizar las siguientes acciones:
 		Cambiar el color de las fichas según las reglas de Othello.
 		Actualizar el tablero con las nuevas fichas.
-		Realizar cualquier otro procesamiento relacionado con el movimiento. 	(Mirar reglas de juego)
+		Realizar cualquier otro procesamiento relacionado con el movimiento. (Mirar reglas de juego)
 	5. Función terminacion():
 		Esta función verifica si el juego ha terminado.
-		Debemos comprobar si no hay movimientos válidos disponibles para ninguno 	de los jugadores o si el tablero está 			completamente lleno.
-		Devuelve false si el juego no ha terminado y true si se cumple alguna de 	las condiciones de finalización.
+		Debemos comprobar si no hay movimientos válidos disponibles para ninguno de los jugadores o si el tablero está 			completamente lleno.
+		Devuelve false si el juego no ha terminado y true si se cumple alguna de las condiciones de finalización.
 	6. Función jugadores():
 		Esta función determina cómo cambian los turnos de los jugadores.
 		Puede ser alternar entre los caracteres p1 y p2 en cada turno.
@@ -230,4 +230,12 @@ Caminos posibles -> Se le debe pasar la estructura.
 		Cambia el turno de los jugadores llamando a jugadores().
 		Repite hasta que el juego termine.
 		Al final del juego, muestra el resultado final y determina el ganador.
+
+* Decisiones de atributos de la clase 
+	Miembros en public:
+	Constructor y Destructor (juego() y ~juego()): Estos métodos son típicamente públicos porque deben ser accesibles desde fuera de 	la clase para crear y destruir objetos de la clase juego. Los usuarios del objeto necesitan poder crear instancias del juego y 		liberar los recursos asociados cuando ya no son necesarios.
+	
+	Función jugar(): Esta función define el punto de entrada del juego y es la interfaz principal a través de la cual se inicia y se 	ejecuta el juego. Debe ser pública para permitir que los usuarios del objeto inicien y jueguen una partida de Othello.
+	
+	Métodos privados (tablero(), verif_movimiento(), movi(), terminacion(), jugadores()): Estos métodos son privados porque son 		utilizados internamente por la clase para implementar la lógica del juego. Los usuarios del objeto de juego no necesitan conocer 	los detalles de implementación de estas funciones, ya que su interacción con el juego se realiza a través de la función pública 	jugar(). Mantener estos métodos como privados ayuda a encapsular la lógica del juego y evita el acceso no deseado a partes 		internas de la clase.
 
