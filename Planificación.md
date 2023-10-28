@@ -232,6 +232,7 @@ Caminos posibles -> Se le debe pasar la estructura.
 		Al final del juego, muestra el resultado final y determina el ganador.
 
 * Decisiones de atributos de la clase 
+
 	Miembros en public:
 	Constructor y Destructor (juego() y ~juego()): Estos métodos son típicamente públicos porque deben ser accesibles desde fuera de 	la clase para crear y destruir objetos de la clase juego. Los usuarios del objeto necesitan poder crear instancias del juego y 		liberar los recursos asociados cuando ya no son necesarios.
 	
