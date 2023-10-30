@@ -10,8 +10,6 @@ tablero::tablero(){
             else tab[i][j] = ' ';
         }
     }
-    p1 = '*';
-    p2 = '-';
     movimientos_posibles = nullptr;
     tamaño = 0;
     capacidad = 0;
@@ -58,11 +56,6 @@ void tablero::vaciar_movimientos(){
     movimientos_posibles = new int [capacidad];
 }
 
-
-
-
-
-
 void tablero::imprimir_tablero(){
     cout << " ";
     for(char i = 'A'; i < 'A'+ N; i++){
@@ -88,6 +81,38 @@ void tablero::imprimir_tablero(){
     cout << "+\n";
 }
 
+void tablero::calcular_mov_legales(char jugador){
+    for (int fila = 0; fila < N ; fila ++){
+        for (int columna = 0; columna < N ; columna ++){
+            if (tab[fila][columna] == ' '){
+                //evaluar si puedo generar un cambio en el tablero en esta posicion para el jugador selecto
+                calcular_mov_valido(fila, columna, jugador);
+            }
+        }
+    }
+}
+
+void tablero::calcular_mov_valido(int fila, int columna, char jugador){
+    char otro_jugador = (jugador == '*')? '-':'*';
+    int posiciones_adyacentes[8][2] ={{-1,1},{-1,0},{-1,1},         //Como las posiciones en un plano cartesiano
+                                      {0,1},{0,-1},                 //estas son las 8 direcciones posibles de movimiento
+                                      {1,1},{1,0},{1,-1}};
+    for (int *par : posiciones_adyacentes ){
+        //No evaluar ciertas posiciones adyacentes si me salgo del mapa, es decir, me encuentro en los bordes
+        if (fila + par[0] > 7 || fila + par[0] || columna + par[1] > 7 || columna + par[1] < 0 ) continue;
+        char caracter_evaluar = tab[fila+par[0]][columna+par[1]];
+
+        if(caracter_evaluar == otro_jugador){       //evaluar que pueda aplicar sanduche
+            int fila_modificar = fila + par[0];
+            int columna_modificar = fila + par[1];
+
+            while(caracter_evaluar == otro_jugador){        //evaluar el caso donde exista más de un caracter opuesto en línea
+
+            }
+        }
+    }
+}
+
 void tablero::mostrar_movimientos_posibles(){
     for (int i = 0; i < tamaño; i ++){
         if(i % 2 == 0) cout << " (" << int_a_char(movimientos_posibles[i]);
@@ -95,6 +120,19 @@ void tablero::mostrar_movimientos_posibles(){
     }
 }
 
+void tablero::hacer_movimiento(int fila, int columna){
+
+}
+
+void tablero::contar_fichas(){
+
+}
+
+bool tablero::terminacion(){
+
+
+
+}
 
 tablero::~tablero(){
     delete [] movimientos_posibles;
