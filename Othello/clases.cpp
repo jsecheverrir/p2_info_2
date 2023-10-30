@@ -64,17 +64,34 @@ void tablero::vaciar_movimientos(){
 
 
 void tablero::imprimir_tablero(){
-    for (int i = 0; i < N ; i++){
-        for (int j = 0; j < N ; j++){
-            cout << " " << tab[i][j];
-        }
-        cout << endl;
+    cout << " ";
+    for(char i = 'A'; i < 'A'+ N; i++){
+        cout <<"   " << i;
     }
+    cout << endl;
+    for (int i = 0; i < N ; i++){
+        cout << "  ";
+        for (int j = 0; j < N ; j++){
+            cout << "+===" ;
+        }
+        cout << "+\n";
+        cout  << i+1<< " ";
+        for (int j = 0; j < N ; j++){
+            cout<< "| "  << tab[i][j]<< " ";
+        }
+        cout << "|" <<endl;
+    }
+    cout << "  ";
+    for (int j = 0; j < N ; j++){
+        cout << "+===" ;
+    }
+    cout << "+\n";
 }
 
 void tablero::mostrar_movimientos_posibles(){
     for (int i = 0; i < tamaño; i ++){
-        cout << " " << movimientos_posibles[i];
+        if(i % 2 == 0) cout << " (" << int_a_char(movimientos_posibles[i]);
+        else cout << "," << movimientos_posibles[i] + 1<< ")";
     }
 }
 

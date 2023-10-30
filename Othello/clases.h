@@ -1,8 +1,8 @@
 #ifndef CLASES_H
 #define CLASES_H
-#include <iostream>
 
-using namespace std;
+#include "funciones.h"
+
 #define N 8
 
 
