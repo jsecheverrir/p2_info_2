@@ -6,6 +6,10 @@ int main(){
     char jugador = ' ';
     int sin_movimientos = 0;        //cantidad de veces que se pueden quedar sin movimientos
     int contador = 0;
+    prueba.imprimir_tablero();
+    prueba.calcular_mov_legales('-');
+    prueba.mostrar_movimientos_posibles();
+    /*
     while (sin_movimientos < 2){
         jugador = (contador % 2 == 0)? jugadores[0] : jugadores[1] ;
         prueba.calcular_mov_legales(jugador);
@@ -17,7 +21,7 @@ int main(){
 
         }
 
-    }
+    }*/
     /*
 
 
