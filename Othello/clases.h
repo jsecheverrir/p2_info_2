@@ -1,5 +1,8 @@
 #ifndef CLASES_H
 #define CLASES_H
+#include <iostream>
+#include <string>
+using namespace std;
 
 #include "funciones.h"
 
@@ -17,6 +20,8 @@ public:
     tablero();
     ~tablero();
 
+    void mostrar_movimientos_pos();     //este método es temporal
+
     void redimensionar();
     void push_back(int elemento);
     int get_tamaño();
@@ -28,6 +33,7 @@ public:
     void calcular_mov_valido(int fila, int columna,char jugador);               //Solo para una ficha y un camino, validar si en esa ficha y camino es posible ese movimiento
     void mostrar_movimientos_posibles();             //muestra el atributo movimientos_posibles
     //validar entrada por consola se encuentre dentro de los movimientos posibles
+    void movimiento(char jugador);
     void hacer_movimiento(int fila, int columna);                 //modificar tablero con el movimiento
 
 

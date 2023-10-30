@@ -15,7 +15,11 @@ tablero::tablero(){
     capacidad = 0;
 }
 
-
+void tablero::mostrar_movimientos_pos(){
+    for (int i = 0; i < tamaño; i ++){
+        cout << " " << movimientos_posibles[i];
+    }
+}
 
 void tablero::redimensionar(){
     if (capacidad == 0){
@@ -127,6 +131,66 @@ void tablero::mostrar_movimientos_posibles(){
         if(i % 2 == 0) cout << " (" << int_a_char(movimientos_posibles[i]);
         else cout << "," << movimientos_posibles[i] + 1<< ")";
     }
+}
+
+void tablero::movimiento(char jugador){
+    string ingresado;
+    bool validacion = false;
+    system("cls");
+    while (validacion != true){
+        imprimir_tablero();
+        cout << "\nLos movimientos posibles para " <<jugador<<" son: ";
+        mostrar_movimientos_posibles();
+        cout << "\nIngrese fila y columna de forma consecutiva (de esta forma: A1): ";
+        cin >> ingresado;
+        if (ingresado.length() == 2){
+            if(isupper(ingresado[0])){
+                if(isdigit(ingresado[1])){
+                    if (57>=ingresado[1] && ingresado[1]>48){
+                        if('A' <= ingresado[0] && ingresado[0] < ('A' + N-1)){
+                            int fila = ingresado[0] - 'A';
+                            int columna = ingresado[1] - 49;
+                            for (int i = 0; i < tamaño; i + 2){
+                                if (movimientos_posibles[i] == fila){
+                                    if(movimientos_posibles[i + 1] = columna){
+                                        validacion = true;
+                                        }
+                                    }
+                                else continue;
+                            }
+                            if (validacion != true)  {
+                                    system("cls");
+                                    cout << "\nLa fila no coincide con ninguna columna de las opciones\n";
+                            }
+                        }
+                        else{
+                            system("cls");
+                            cout << "\nAsegurese de ingresar una fila de las que se encuentran en el tablero\n";
+                        }
+                    }
+                    else{
+                        system("cls");
+                        cout << "\nColumna fuera de rango\n";
+                    }
+                }
+                else{
+                    system("cls");
+                    cout << "\nAsegurese de ingresar la columna como un número\n";
+                }
+
+            }
+            else{
+                system("cls");
+                cout << "\nAsegurese de ingresar la fila en mayuscula\n";
+            }
+
+        }
+        else{
+            system("cls");
+            cout << "\nCantidad incorrecta de caracteres.\n";
+        }
+    }
+
 }
 
 void tablero::hacer_movimiento(int fila, int columna){
