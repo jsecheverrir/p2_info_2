@@ -78,7 +78,7 @@ ficha pueda ser colocada es que genere un encierro tipo sandwich.
   	* Se dice entonces que la separación del código en 2 clases seguiría el principio de separación de responsabilidades, donde cada 	clase tiene una tarea específica.
   	* También facilita la reutilización del código, ya que son clases bastante generales, y en cualquier juego podemos encontrar 		jugadores.
   	* A su vez, en casi todos los juegos podemos encontrar un tablero, que puede ser adaptado.
-  	* De igual forma, al estar más separado el código, será más legible, ya que es evidente cuál es la función de cada clase, y el seguimiento de nuestro código se favorece.
+  	* De igual forma, al estar más separado el código, será más legible, ya que es evidente cuál es la función de cada clase, y el 		seguimiento de nuestro código se favorece.
   	* Además, también posibilita la detección de errores en el código.
   	  
   	
@@ -120,7 +120,7 @@ Caminos posibles -> Se le debe pasar la estructura.
   		#include <iostream>
 		using namespace std;
 		
-		class juego {
+		class tablero {
 		public:
 		    juego();
 		    ~juego();
@@ -132,14 +132,14 @@ Caminos posibles -> Se le debe pasar la estructura.
 		    int movimientos_posibles
   
 		    void imprimir_tablero();			//Función que imprime el tablero de juego
-  		    calcular_mov_legales():                  	//Comprobar los 8 caminos adyacentes por todas 									las fichas de el jugador, tener en consideracion 								la ficha que estamos evaluando
-  		    calcular_mov_jugador(jugador)               //Solo para una ficha y un camino, validar si en 								esa ficha y camino es posible ese movimiento
+  		    calcular_mov_legales():                  	//Comprobar los 8 caminos adyacentes por todas 												las fichas de el jugador, tener en consideracion 											la ficha que estamos evaluando
+  		    calcular_mov_jugador(jugador)               //Solo para una ficha y un camino, validar si en 											esa ficha y camino es posible ese movimiento
                      mostrar_movimientos_posibles();             //muestra el atributo movimientos_posibles
-  			//validar entrada por consola se encuentre dentro de los movimientos posibles
+  		    //validar entrada por consola se encuentre dentro de los movimientos posibles
                     hacer_movimiento(mov_posible);                 //modificar tablero con el movimiento
-  		     
-                     vaciar_movimientos_posibles();               //
-
+  		     comprobar_tabla_llena():                      //recorrer el arreglo para verificar si la tabla está llena
+                     vaciar_movimientos_posibles();               //reiniciar en 0 los movimientos posibles de cada jugador despues de 									   cada turno
+		    //metodo "find" que debemos acoplar e implementar a nuestro codigo
   		    contar_fichas();                             //Cuenta fichas de cada jugador
 		    bool terminacion();				//Verifica si el juego ha terminado
 		};
@@ -192,10 +192,10 @@ Caminos posibles -> Se le debe pasar la estructura.
 
 
   	* Por qué usar este esqueleto:
-	1. Estructura Básica: El código establece una estructura básica para el juego. Define una clase juego que contiene métodos para 	inicializar el tablero, verificar movimientos válidos, realizar movimientos, determinar el final del juego y alternar entre jugadores.
-	2. Utiliza una matriz dinámica (char **tab) para representar el tablero. Esto es importante para el juego de Othello, ya que el 	tablero es una parte central de la mecánica del juego. Esta matriz se crea de manera dinámica en el constructor y se libera en el destructor, lo que es un buen enfoque para la gestión de memoria.
+	1. Estructura Básica: El código establece una estructura básica para el juego. Define una clase juego que contiene métodos para 	inicializar el tablero, verificar movimientos válidos, realizar movimientos, determinar el final del juego y alternar entre 		jugadores.
+	2. Utiliza una matriz dinámica (char **tab) para representar el tablero. Esto es importante para el juego de Othello, ya que el 	tablero es una parte central de la mecánica del juego. Esta matriz se crea de manera dinámica en el constructor y se libera en 		el destructor, lo que es un buen enfoque para la gestión de memoria.
 	3. El código proporciona esqueletos de métodos como verif_movimiento(), movi(), terminacion(), y jugadores(). Estos métodos son 	fundamentales para la lógica del juego y pueden ser completados con las reglas específicas de Othello.
-	4. La función jugar() establece un ciclo de juego que se ejecuta hasta que se cumple una condición de finalización. Así mantenemos el flujo del juego.
+	4. La función jugar() establece un ciclo de juego que se ejecuta hasta que se cumple una condición de finalización. Así 		mantenemos el flujo del juego.
 
  	* Función a función
 	 1. Constructor y Destructor de juego:
@@ -211,7 +211,7 @@ Caminos posibles -> Se le debe pasar la estructura.
 		Podemos implementar un bucle para inicializar el tablero con fichas iniciales y mostrarlo en la consola.
 	3. Función verif_movimiento(int fila, int col):
 		Esta función verifica si un movimiento es válido.
-		Debemos comprobar si la casilla en las coordenadas (fila, col) está vacía y si el movimiento 			produce un encierro tipo "sandwich" de fichas del oponente.
+		Debemos comprobar si la casilla en las coordenadas (fila, col) está vacía y si el movimiento 			produce 		un encierro tipo "sandwich" de fichas del oponente.
 		Devolver true si el movimiento es válido y false en caso contrario.
 	4. Función movi(int fila, int col):
 		Esta función implementa cómo funcionan las fichas en cada movimiento.
@@ -221,8 +221,8 @@ Caminos posibles -> Se le debe pasar la estructura.
 		Realizar cualquier otro procesamiento relacionado con el movimiento. (Mirar reglas de juego)
 	5. Función terminacion():
 		Esta función verifica si el juego ha terminado.
-		Debemos comprobar si no hay movimientos válidos disponibles para ninguno de los jugadores o si el 		tablero está completamente lleno.
-		Devuelve false si el juego no ha terminado y true si se cumple alguna de las condiciones de 			finalización.
+		Debemos comprobar si no hay movimientos válidos disponibles para ninguno de los jugadores o si el 		tablero 		está completamente lleno.
+		Devuelve false si el juego no ha terminado y true si se cumple alguna de las condiciones de 						finalización.
 	6. Función jugadores():
 		Esta función determina cómo cambian los turnos de los jugadores.
 		Puede ser alternar entre los caracteres p1 y p2 en cada turno.
@@ -241,9 +241,9 @@ Caminos posibles -> Se le debe pasar la estructura.
 * Decisiones de atributos de la clase 
 
 	Miembros en public:
-	Constructor y Destructor (juego() y ~juego()): Estos métodos son típicamente públicos porque deben ser accesibles desde fuera de la clase para crear y destruir objetos de la clase juego. Los usuarios del objeto necesitan poder crear instancias del juego y liberar los recursos asociados cuando ya no son necesarios.
+	Constructor y Destructor (juego() y ~juego()): Estos métodos son típicamente públicos porque deben ser accesibles desde fuera de 	la clase para crear y destruir objetos de la clase juego. Los usuarios del objeto necesitan poder crear instancias del juego y 		liberar los recursos asociados cuando ya no son necesarios.
 	
 	Función jugar(): Esta función define el punto de entrada del juego y es la interfaz principal a través de la cual se inicia y se 	ejecuta el juego. Debe ser pública para permitir que los usuarios del objeto inicien y jueguen una partida de Othello.
 	
-	Métodos privados (tablero(), verif_movimiento(), movi(), terminacion(), jugadores()): Estos métodos son privados porque son utilizados internamente por la clase para implementar la lógica del juego. Los usuarios del objeto de juego no necesitan conocer los detalles de implementación de estas funciones, ya que su interacción con el juego se realiza a través de la función pública jugar(). Mantener estos métodos como privados ayuda a encapsular la lógica del juego y evita el acceso no deseado a partes internas de la clase.
+	Métodos privados (tablero(), verif_movimiento(), movi(), terminacion(), jugadores()): Estos métodos son privados porque son 		utilizados internamente por la clase para implementar la lógica del juego. Los usuarios del objeto de juego no necesitan conocer 	los detalles de implementación de estas funciones, ya que su interacción con el juego se realiza a través de la función pública 	jugar(). Mantener estos métodos como privados ayuda a encapsular la lógica del juego y evita el acceso no deseado a partes 		internas de la clase.
 
