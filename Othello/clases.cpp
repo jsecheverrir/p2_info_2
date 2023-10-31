@@ -11,6 +11,7 @@ tablero::tablero(){
         }
     }
     movimientos_posibles = nullptr;
+    direccion = nullptr;
     tamaño = 0;
     capacidad = 0;
 }
@@ -26,23 +27,36 @@ void tablero::redimensionar(){
         // Si el arreglo está vacío, inicia con una capacidad de 2, ya que almacenamos pares de datos.
         capacidad = 2;
         movimientos_posibles = new int [capacidad];
+        direccion = new int [capacidad];
     }
     else{
         capacidad *= 4;     //Para no generar muchos duplicados y tener espacio en reserva, cuadruplico el espacio reservado
         int  *new_arreglo = new int [capacidad];
+        int  *new_direccion = new int [capacidad];
         for (int i = 0; i < tamaño; i ++){      //generacion del duplicado de los elementos actuales
             new_arreglo[i] = movimientos_posibles[i];
+            new_direccion[i] = direccion[i];
         }
         delete [] movimientos_posibles;
+        delete [] direccion;
         movimientos_posibles = new_arreglo;
+        direccion = new_direccion;
     }
 }
 
-void tablero::push_back(int elemento){
+void tablero::push_back_mov(int elemento){
     if(tamaño == capacidad){
         redimensionar();
     }
     movimientos_posibles[tamaño] = elemento;
+    tamaño ++;
+}
+
+void tablero::push_back_dir(int elemento){
+    if(tamaño == capacidad){
+        redimensionar();
+    }
+    direccion[tamaño] = elemento;
     tamaño ++;
 }
 
@@ -57,7 +71,8 @@ int tablero::get_capacidad(){
 void tablero::vaciar_movimientos(){
     tamaño = 0;
     capacidad = 2;
-    movimientos_posibles = new int [capacidad];
+    movimientos_posibles = nullptr;
+    direccion = nullptr;
 }
 
 void tablero::imprimir_tablero(){
@@ -119,8 +134,10 @@ void tablero::calcular_mov_valido(const int fila,const int columna, char jugador
                 caracter_evaluar = tab[fila_temp][columna_temp];
             }
             if (caracter_evaluar == jugador){
-                push_back(fila);
-                push_back(columna);
+                push_back_mov(fila);
+                push_back_mov(columna);
+                push_back_dir((par[0]*-1));
+                push_back_dir((par[1]*-1));
             }
         }
     }
@@ -136,6 +153,7 @@ void tablero::mostrar_movimientos_posibles(){
 void tablero::movimiento(char jugador){
     string ingresado;
     bool validacion = false;
+    int fila = 0, columna = 0;
     system("cls");
     while (validacion != true){
         imprimir_tablero();
@@ -148,11 +166,11 @@ void tablero::movimiento(char jugador){
                 if(isdigit(ingresado[1])){
                     if (57>=ingresado[1] && ingresado[1]>48){
                         if('A' <= ingresado[0] && ingresado[0] < ('A' + N-1)){
-                            int fila = ingresado[0] - 'A';
-                            int columna = ingresado[1] - 49;
-                            for (int i = 0; i < tamaño; i + 2){
+                            fila = ingresado[0] - 'A';
+                            columna = ingresado[1] - 49;
+                            for (int i = 0; i < tamaño; i += 2){
                                 if (movimientos_posibles[i] == fila){
-                                    if(movimientos_posibles[i + 1] = columna){
+                                    if(movimientos_posibles[i + 1] == columna){
                                         validacion = true;
                                         }
                                     }
@@ -204,7 +222,7 @@ void tablero::contar_fichas(){
 bool tablero::terminacion(){
 
 
-
+    return false;
 }
 
 tablero::~tablero(){

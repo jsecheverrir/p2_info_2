@@ -15,10 +15,10 @@ int main(){
         else{
             sin_movimientos = 0;
             //prueba.mostrar_movimientos_pos();
-            prueba.movimiento(jugador);
+            //prueba.movimiento(jugador);
 
 
-            prueba.vaciar_movimientos();
+            //prueba.vaciar_movimientos();
         }
 
     }

@@ -13,6 +13,7 @@ class tablero{
 private:
     char **tab;		//Tablero
     int *movimientos_posibles;      //almacena par de datos en forma de fila, columna, fila,...
+    int *direccion;                 //almacena par de coordenadas que indican dirección del movimiento
     int capacidad;          //capacidad de movimientos posibles
     int tamaño;             //cantidad de elementos
 
@@ -23,7 +24,8 @@ public:
     void mostrar_movimientos_pos();     //este método es temporal
 
     void redimensionar();
-    void push_back(int elemento);
+    void push_back_mov(int elemento);
+    void push_back_dir(int elemento);
     int get_tamaño();
     int get_capacidad();
     void vaciar_movimientos();
