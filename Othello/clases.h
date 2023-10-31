@@ -24,8 +24,7 @@ public:
     void mostrar_movimientos_pos();     //este método es temporal
 
     void redimensionar();
-    void push_back_mov(int elemento);
-    void push_back_dir(int elemento);
+    void push_back_mov(int elemento, int dir);
     int get_tamaño();
     int get_capacidad();
     void vaciar_movimientos();
@@ -36,7 +35,7 @@ public:
     void mostrar_movimientos_posibles();             //muestra el atributo movimientos_posibles
     //validar entrada por consola se encuentre dentro de los movimientos posibles
     void movimiento(char jugador);
-    void hacer_movimiento(int fila, int columna);                 //modificar tablero con el movimiento
+    void hacer_movimiento(int fila, int columna, int indice, char jugador);                 //modificar tablero con el movimiento
 
 
     void contar_fichas();                             //Cuenta fichas de cada jugador

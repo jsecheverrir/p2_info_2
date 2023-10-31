@@ -18,8 +18,13 @@ tablero::tablero(){
 
 void tablero::mostrar_movimientos_pos(){
     for (int i = 0; i < tamaño; i ++){
-        cout << " " << movimientos_posibles[i];
+        cout << " " << movimientos_posibles[i];        
     }
+    cout << endl;
+    for (int i = 0; i < tamaño; i ++){
+        cout << i <<": " << direccion[i]<< endl;
+}
+
 }
 
 void tablero::redimensionar(){
@@ -44,21 +49,15 @@ void tablero::redimensionar(){
     }
 }
 
-void tablero::push_back_mov(int elemento){
+void tablero::push_back_mov(int elemento, int dir){
     if(tamaño == capacidad){
         redimensionar();
     }
     movimientos_posibles[tamaño] = elemento;
+    direccion[tamaño] = dir;
     tamaño ++;
 }
 
-void tablero::push_back_dir(int elemento){
-    if(tamaño == capacidad){
-        redimensionar();
-    }
-    direccion[tamaño] = elemento;
-    tamaño ++;
-}
 
 int tablero::get_tamaño(){
     return tamaño;
@@ -70,7 +69,7 @@ int tablero::get_capacidad(){
 
 void tablero::vaciar_movimientos(){
     tamaño = 0;
-    capacidad = 2;
+    capacidad = 0;
     movimientos_posibles = nullptr;
     direccion = nullptr;
 }
@@ -134,10 +133,8 @@ void tablero::calcular_mov_valido(const int fila,const int columna, char jugador
                 caracter_evaluar = tab[fila_temp][columna_temp];
             }
             if (caracter_evaluar == jugador){
-                push_back_mov(fila);
-                push_back_mov(columna);
-                push_back_dir((par[0]*-1));
-                push_back_dir((par[1]*-1));
+                push_back_mov(fila, par[0]);
+                push_back_mov(columna, par[1]);
             }
         }
     }
@@ -153,7 +150,7 @@ void tablero::mostrar_movimientos_posibles(){
 void tablero::movimiento(char jugador){
     string ingresado;
     bool validacion = false;
-    int fila = 0, columna = 0;
+    int fila = 0, columna = 0, indice = 0;
     system("cls");
     while (validacion != true){
         imprimir_tablero();
@@ -166,11 +163,12 @@ void tablero::movimiento(char jugador){
                 if(isdigit(ingresado[1])){
                     if (57>=ingresado[1] && ingresado[1]>48){
                         if('A' <= ingresado[0] && ingresado[0] < ('A' + N-1)){
-                            fila = ingresado[0] - 'A';
-                            columna = ingresado[1] - 49;
+                            columna = ingresado[0] - 'A';
+                            fila = ingresado[1] - 49;
                             for (int i = 0; i < tamaño; i += 2){
                                 if (movimientos_posibles[i] == fila){
                                     if(movimientos_posibles[i + 1] == columna){
+                                        indice = i;
                                         validacion = true;
                                         }
                                     }
@@ -208,25 +206,31 @@ void tablero::movimiento(char jugador){
             cout << "\nCantidad incorrecta de caracteres.\n";
         }
     }
+    //mostrar_movimientos_pos();
+    hacer_movimiento(fila, columna,indice, jugador);
 
 }
 
-void tablero::hacer_movimiento(int fila, int columna){
-
+void tablero::hacer_movimiento(int fila, int columna, const int indice, char jugador){
+    char caracter_evaluar = tab[fila][columna];
+    int fila_temp = fila, columna_temp = columna;
+    while (caracter_evaluar != jugador){
+        tab[fila_temp][columna_temp] = jugador;
+        fila_temp += direccion[indice];
+        columna_temp += direccion[indice + 1];
+        caracter_evaluar = tab[fila_temp][columna_temp];
+    }
 }
 
 void tablero::contar_fichas(){
 
 }
 
-bool tablero::terminacion(){
 
-
-    return false;
-}
 
 tablero::~tablero(){
     delete [] movimientos_posibles;
+    delete [] direccion;
     for (int i = 0; i < N ; i++){
         delete [] tab[i];
     }

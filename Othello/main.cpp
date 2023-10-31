@@ -11,16 +11,15 @@ int main(){
         prueba.calcular_mov_legales(jugador);
         if (prueba.get_tamaño()==0){
             sin_movimientos++;
+            contador ++;
         }
         else{
             sin_movimientos = 0;
-            //prueba.mostrar_movimientos_pos();
-            //prueba.movimiento(jugador);
-
-
-            //prueba.vaciar_movimientos();
+            prueba.mostrar_movimientos_pos();
+            prueba.movimiento(jugador);
+            prueba.vaciar_movimientos();
+            contador++;
         }
-
     }
     /*
 
