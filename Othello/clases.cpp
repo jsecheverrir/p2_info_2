@@ -16,10 +16,6 @@ tablero::tablero(){
     capacidad = 0;
 }
 
-
-
-
-
 void tablero::redimensionar(){
     if (capacidad == 0){
         // Si el arreglo está vacío, inicia con una capacidad de 2, ya que almacenamos pares de datos.
@@ -51,13 +47,8 @@ void tablero::push_back_mov(int elemento, int dir){
     tamaño ++;
 }
 
-
 int tablero::get_tamaño(){
     return tamaño;
-}
-
-int tablero::get_capacidad(){
-    return capacidad;
 }
 
 void tablero::vaciar_movimientos(){
@@ -148,7 +139,7 @@ void tablero::mostrar_movimientos_posibles(){
     for (int i = 0; i < tamaño; i ++){
         if(i % 2 == 0) cout << " (" << int_a_char(movimientos_posibles[(i+1)]);
         else cout << "," << (movimientos_posibles[i-1])+1<< ")";
-}
+    }
 }
 
 void tablero::movimiento(char jugador){
@@ -232,8 +223,6 @@ void tablero::contar_fichas(int *fichas_negras, int *fichas_blancas){
         }
     }
 }
-
-
 
 tablero::~tablero(){
     delete [] movimientos_posibles;
