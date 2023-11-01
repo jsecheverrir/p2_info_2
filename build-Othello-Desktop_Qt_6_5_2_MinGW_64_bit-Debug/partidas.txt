@@ -1,0 +1,5 @@
+Fecha y hora: 2023-11-01 08:00:41
+Jugador 1: Juana
+Jugador 2: Sebastian
+Ganador: *
+--------------------------
