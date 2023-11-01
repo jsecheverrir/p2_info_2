@@ -15,12 +15,13 @@ int main(){
         }
         else{
             sin_movimientos = 0;
-            prueba.mostrar_movimientos_pos();
+            prueba.mostrar_movimientos_posibles();
             prueba.movimiento(jugador);
             prueba.vaciar_movimientos();
             contador++;
         }
     }
+
     /*
 
 

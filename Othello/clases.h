@@ -21,7 +21,7 @@ public:
     tablero();
     ~tablero();
 
-    void mostrar_movimientos_pos();     //este método es temporal
+
 
     void redimensionar();
     void push_back_mov(int elemento, int dir);

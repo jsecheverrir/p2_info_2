@@ -16,16 +16,9 @@ tablero::tablero(){
     capacidad = 0;
 }
 
-void tablero::mostrar_movimientos_pos(){
-    for (int i = 0; i < tamaño; i ++){
-        cout << " " << movimientos_posibles[i];        
-    }
-    cout << endl;
-    for (int i = 0; i < tamaño; i ++){
-        cout << i <<": " << direccion[i]<< endl;
-}
 
-}
+
+
 
 void tablero::redimensionar(){
     if (capacidad == 0){
@@ -133,8 +126,19 @@ void tablero::calcular_mov_valido(const int fila,const int columna, char jugador
                 caracter_evaluar = tab[fila_temp][columna_temp];
             }
             if (caracter_evaluar == jugador){
-                push_back_mov(fila, par[0]);
-                push_back_mov(columna, par[1]);
+                // Verificar si ya existe el movimiento en la lista
+                bool ya_existe = false; //variable para comprobar si el movimiento ya existe
+                for (int i = 0; i < tamaño; i += 2) {  //verificar qque no haya movimientos repetidos en la lista
+                    if (movimientos_posibles[i] == fila && movimientos_posibles[i + 1] == columna) {
+                        ya_existe = true;
+                        break;
+                    }
+                }
+                if (!ya_existe) {
+                    push_back_mov(fila, par[0]);
+                    push_back_mov(columna, par[1]);
+                }
+
             }
         }
     }
@@ -142,9 +146,9 @@ void tablero::calcular_mov_valido(const int fila,const int columna, char jugador
 
 void tablero::mostrar_movimientos_posibles(){
     for (int i = 0; i < tamaño; i ++){
-        if(i % 2 == 0) cout << " (" << int_a_char(movimientos_posibles[i]);
-        else cout << "," << movimientos_posibles[i] + 1<< ")";
-    }
+        if(i % 2 == 0) cout << " (" << int_a_char(movimientos_posibles[(i+1)]);
+        else cout << "," << (movimientos_posibles[i-1])+1<< ")";
+}
 }
 
 void tablero::movimiento(char jugador){
@@ -156,13 +160,13 @@ void tablero::movimiento(char jugador){
         imprimir_tablero();
         cout << "\nLos movimientos posibles para " <<jugador<<" son: ";
         mostrar_movimientos_posibles();
-        cout << "\nIngrese fila y columna de forma consecutiva (de esta forma: A1): ";
+        cout << "\nIngrese columna y fila de forma consecutiva (de esta forma: A1): ";
         cin >> ingresado;
         if (ingresado.length() == 2){
             if(isupper(ingresado[0])){
                 if(isdigit(ingresado[1])){
-                    if (57>=ingresado[1] && ingresado[1]>48){
-                        if('A' <= ingresado[0] && ingresado[0] < ('A' + N-1)){
+                    if (56>=ingresado[1] && ingresado[1]>48){
+                        if(ingresado[0] >= 'A' && ingresado[0] < ('A' + N)){
                             columna = ingresado[0] - 'A';
                             fila = ingresado[1] - 49;
                             for (int i = 0; i < tamaño; i += 2){
@@ -193,20 +197,18 @@ void tablero::movimiento(char jugador){
                     system("cls");
                     cout << "\nAsegurese de ingresar la columna como un número\n";
                 }
-
             }
             else{
                 system("cls");
                 cout << "\nAsegurese de ingresar la fila en mayuscula\n";
             }
-
         }
         else{
             system("cls");
             cout << "\nCantidad incorrecta de caracteres.\n";
         }
     }
-    //mostrar_movimientos_pos();
+
     hacer_movimiento(fila, columna,indice, jugador);
 
 }
