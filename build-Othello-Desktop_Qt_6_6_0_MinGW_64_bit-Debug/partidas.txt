@@ -1,0 +1,25 @@
+Fecha y hora: 2023-10-31 23:25:34
+Jugador 1: juana
+Jugador 2: amore
+Ganador: =
+--------------------------
+Fecha y hora: 2023-10-31 23:31:49
+Jugador 1: juana
+Jugador 2: amore
+Ganador: =  
+--------------------------
+Fecha y hora: 2023-10-31 23:40:16
+Jugador 1: JUANA
+Jugador 2: HOLA
+Ganador: = 
+--------------------------
+Fecha y hora: 2023-10-31 23:48:49
+Jugador 1: juana
+Jugador 2: amore
+Ganador: = 
+--------------------------
+Fecha y hora: 2023-10-31 23:55:36
+Jugador 1: juana
+Jugador 2: lol
+Ganador: =
+--------------------------
