@@ -38,7 +38,7 @@ public:
     void hacer_movimiento(int fila, int columna, int indice, char jugador);                 //modificar tablero con el movimiento
 
 
-    void contar_fichas();                             //Cuenta fichas de cada jugador
+    void contar_fichas(int *cant_fichas_negro, int *cant_fichas_blanco);                             //Cuenta fichas de cada jugador
     bool terminacion();				//Verifica si el juego ha terminado
 };
 

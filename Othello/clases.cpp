@@ -224,8 +224,13 @@ void tablero::hacer_movimiento(int fila, int columna, const int indice, char jug
     }
 }
 
-void tablero::contar_fichas(){
-
+void tablero::contar_fichas(int *fichas_negras, int *fichas_blancas){
+    for(int fila = 0; fila < N; fila++){
+        for (int columna = 0; columna < N; columna++){
+            if (tab[fila][columna] == '-') fichas_negras++;
+            else if (tab[fila][columna] == '*') fichas_blancas++;
+        }
+    }
 }
 
 
