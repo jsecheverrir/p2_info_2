@@ -23,3 +23,13 @@ Jugador 1: juana
 Jugador 2: lol
 Ganador: =
 --------------------------
+Fecha y hora: 2023-11-01 00:06:29
+Jugador 1: JUANA
+Jugador 2: POR
+Ganador: *
+--------------------------
+Fecha y hora: 2023-11-01 00:09:26
+Jugador 1: juana
+Jugador 2: si
+Ganador: -
+--------------------------

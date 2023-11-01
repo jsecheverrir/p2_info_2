@@ -23,12 +23,15 @@ int main(){
     int ganador = '='; // Inicialmente no hay ganador
     // Contar las fichas en el tablero
     prueba.contar_fichas(&cant_fichas_negro, &cant_fichas_blanco);
-    if (ganador == '-') {
+    if (cant_fichas_negro > cant_fichas_blanco) {
         cout << "El ganador es el Jugador 1 con " << cant_fichas_negro << " fichas." << endl;
-    } else if (ganador == '*') {
+        ganador = '-';
+    } else if (cant_fichas_blanco > cant_fichas_negro) {
         cout << "El ganador es el Jugador 2 con " << cant_fichas_blanco << " fichas." << endl;
+        ganador = '*';
     } else {
         cout << "Es un empate. Ambos jugadores tienen " << cant_fichas_negro << " fichas." << endl;
+        ganador = '='; // Empate
     }
     // Solicitar nombres de los jugadores
     string nombreJugador1, nombreJugador2;
