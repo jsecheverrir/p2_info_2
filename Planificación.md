@@ -1,36 +1,41 @@
 # Etapas de análisis.
-* Planificación
-	* Comprender las reglas del juego y las restricciones.
-Diseñar la estructura de clases básicas.
-Planificar la implementación y las tareas a realizar.
+* Análisis
+	* Contextualización del problema:
+	Se debe crear un programa que permita disfrutar del juego de mesa Othello, también conocido como Reversi. Es un juego de mesa 		para dos jugadores que se juega en un tablero de 8x8. El objetivo del juego es tener la mayor cantidad de fichas de tu color en 	el tablero cuando termine la partida
+	Aunque aparentemente simple, Othello es un juego que involucra una estrategia profunda y desafía a los jugadores a anticipar y 		planificar sus movimientos con precisión.
+
+* Consideraciones para abordar el problema
+	- Comprender las reglas del juego y las restricciones.
+	- Diseñar la estructura de clases básicas.
+	- Planificar la implementación y las tareas a realizar.
 
 * Implementación del Juego
-	* Crear clases para el tablero, jugadores y reglas del juego.
-Implementar la lógica para realizar movimientos y mirar encierros "sandwich".
-Desarrollar la visualización básica del tablero en la consola.
-Realizar pruebas iniciales de las clases y la lógica.
+	- Crear clases para el tablero, jugadores y reglas del juego.
+	- Implementar la lógica para realizar movimientos y mirar encierros "sandwich".
+	- Desarrollar la visualización básica del tablero en la consola.
+	- Realizar pruebas iniciales de las clases y la lógica.
+	- Realizar validaciones necesarias para garantizar el flujo de juego
 
 * Finalización del Juego y Resultados
-	* Implementar el manejo de fin de partida y el conteo de fichas.
-Agregar la funcionalidad para guardar los resultados de cada partida en un archivo de texto.
-
-* Añadir la opción de imprimir el historial de partidas en la consola.
-	* Implementar manejo de excepciones para errores básicos.
+	- Implementar el manejo de fin de partida y el conteo de fichas.
+	- Agregar la funcionalidad para guardar los resultados de cada partida en un archivo de texto.
+ 	- Añadir la opción de imprimir el historial de partidas en la consola.
+	- Implementar manejo de excepciones para errores básicos.
 
 * Pruebas y Ajustes
-	* Realizar pruebas del juego.
-Ajustar código según sea necesario.
-Asegurar que todas las funciones esenciales funcionen correctamente.
+	- Realizar pruebas del juego.
+	- Ajustar código según sea necesario.
+	- Asegurar que todas las funciones esenciales funcionen correctamente.
 
 * Video y Repositorio
-	* Grabar video de YouTube 
-Subir el código fuente al repositorio.
+	- Grabar video de YouTube 
+	- Subir el código fuente al repositorio.
 
 * Últimos Ajustes
-	* Asegurar de que todo esté listo para la entrega.
+	- Asegurar de que todo esté listo para la entrega.
 
 *  Entrega
-	* Enviar el enlace al repositorio y el informe a tu profesor antes de la fecha de entrega.
+	- Enviar el enlace al repositorio y el informe a tu profesor antes de la fecha de entrega.
 
 # Transcurso del Juego.
 * Tablero 8x8 donde se ubican en las posiciones D4 y E5 fichas blancas y en D5 y E4 fichas negras.
@@ -72,7 +77,7 @@ ficha pueda ser colocada es que genere un encierro tipo sandwich.
 
 
 * 2 clases
-  	* Se piensa entonces la separación de la clase mencionada anteriormente para brindar modularidad al código planteando 2 clases, una de jugador y otra de tablero.
+  	* Se piensa entonces la separación de la clase mencionada anteriormente para brindar modularidad al código planteando 2 clases, 	una de jugador y otra de tablero.
   	* La clase de jugador tendría atributos como el nombre y el tipo de ficha.
   	* La clase de tablero tendría la estructura del tablero, dimensiones y estado de juego.
   	* Se dice entonces que la separación del código en 2 clases seguiría el principio de separación de responsabilidades, donde cada 	clase tiene una tarea específica.
@@ -100,102 +105,57 @@ Una vez tengo los movimientos válidos, muestro el tablero y los movimientos por
 * Validar que la entrada se encuentre en los movimientos válidos.
 De ser válida la entrada, se procede a hacer el movimiento y se actualiza el tablero, si no es valido se debe pedir entrada nuevamente.
 
-Una vez actualizado el tablero, se pide movimiento al siguiente jugador. Seguimos el mismo proceso hasta que no hayan movimientos válidos (que el movimiento no genere un encierro tipo sandwich o que el tablero ya no tenga lugar para más fichas nuevas).
+* Una vez actualizado el tablero, se pide movimiento al siguiente jugador. Seguimos el mismo proceso hasta que no hayan movimientos válidos (que el movimiento no genere un encierro tipo sandwich o que el tablero ya no tenga lugar para más fichas nuevas).
 
-Para este momento debemos tener un ganador, se procede a recorrer el tablero con un puntero que cuente el numero de fichas de cada jugador para asi definir el ganador. 
+* Para este momento debemos tener un ganador, se procede a recorrer el tablero con un puntero que cuente el numero de fichas de cada jugador para asi definir el ganador. 
 
-Cuando sabemos quien ganó, pedimos nombres de jugadores y almacenamos en un archivo txt (sujeto a cambios), la partida para tener un historial de juego.
+* Cuando sabemos quien ganó, pedimos nombres de jugadores y almacenamos en un archivo txt (sujeto a cambios), la partida para tener un historial de juego.
 
-Implementar función para leer el archivo que almacenará las partidas jugadas anteriormente, y muestre al usuario de forma amigable dicho historial.
-
-
-
-
+* Implementar función para leer el archivo que almacenará las partidas jugadas anteriormente, y muestre al usuario de forma amigable dicho historial.
 
 
 Caminos posibles -> Se le debe pasar la estructura.
 
 * 1 clase:
-  	Esqueleto del código:
-  		#include <iostream>
-		using namespace std;
+Esqueleto del código:
+#include <iostream>
+using namespace std;
 		
-		class tablero {
-		public:
-		    juego();
-		    ~juego();
-		    void jugar();
-		    
-		private:
-		    char **tab;		//Tablero
-		    char p1, p2;	//Jugadores
-		    int movimientos_posibles
-  
-		    void imprimir_tablero();			//Función que imprime el tablero de juego
-  		    calcular_mov_legales():                  	//Comprobar los 8 caminos adyacentes por todas 												las fichas de el jugador, tener en consideracion 											la ficha que estamos evaluando
-  		    calcular_mov_jugador(jugador)               //Solo para una ficha y un camino, validar si en 											esa ficha y camino es posible ese movimiento
-                     mostrar_movimientos_posibles();             //muestra el atributo movimientos_posibles
-  		    //validar entrada por consola se encuentre dentro de los movimientos posibles
-                    hacer_movimiento(mov_posible);                 //modificar tablero con el movimiento
-  		     comprobar_tabla_llena():                      //recorrer el arreglo para verificar si la tabla está llena
-                     vaciar_movimientos_posibles();               //reiniciar en 0 los movimientos posibles de cada jugador despues de 									   cada turno
-		    //metodo "find" que debemos acoplar e implementar a nuestro codigo
-  		    contar_fichas();                             //Cuenta fichas de cada jugador
-		    bool terminacion();				//Verifica si el juego ha terminado
-		};
-		
-		juego::juego() {
-		    //Usamos el constructor para crear de forma dinámica el arreglo que será el tablero
-		}
-		
-		juego::~juego() {
-		    //Aquí liberamos la memoria
-		}
-		
-		void juego::tablero() {
-		  //Actualizamos el tablero
-  		void juego
-		}
-		
-		bool juego::verif_movimiento(int fila, int col) {
-		    // Implementar las reglas para que un movimiento sea válido
-		    return true;	//True cuando el movimiento sí se pueda hacer
-		}
-		
-		void juego::movi(int fila, int col) {     //Revisar 
-		    // Implementar cómo funcionan la fichas en cada movimiento
-		}
-		
-		bool juego::terminacion() {
-		    // Implementar las reglas o condiciones que hacen que el juego termine
-		    return false;	//Falso en cada turno hasta que la condición o regla se cumpla
-		}
-		
-		void juego::jugadores() {
-		    //Implementar las reglas que determinan cómo cambian los turnos de los jugadores
-		}
-		
-		void juego::jugar() {
-		    while (!terminacion()) {	//Mientras el juego no termine se ejecutará el ciclo
-		        //Parte visual y entrada de datos para el juego
-		
-		        if (verif_movimiento(fila, col)) {
-		            //si el movimiento es válido se implementan los métodos del movimiento 
-			    //y el intercambiar el turno de los jugadores
-		        } else {
-		            //Mensaje de movimiento no válido
-		        }
-		    }
-		
-		    //Fin del juego
-		}
+class tablero{
+private:
+	char **tab;		//Tablero
+	int *movimientos_posibles;      //almacena par de datos en forma de fila, columna, fila,...
+	int *direccion;                 //almacena par de coordenadas que indican dirección del movimiento
+	int capacidad;          //capacidad de movimientos posibles
+	int tamaño;             //cantidad de elementos
+
+public:
+	tablero();
+	~tablero();
+	
+	void redimensionar();
+	void push_back_mov(int elemento, int dir);
+	int get_tamaño();
+	void vaciar_movimientos();
+	void imprimir_tablero();			//Función que imprime el tablero de juego
+	void calcular_mov_legales(char jugador);                  	//Comprobar los 8 caminos adyacentes para todas las fichas
+	void calcular_mov_valido(int fila, int columna,char jugador);               //Solo para una ficha y un camino, validar si en esa 	ficha y 										camino es posible ese movimiento
+	void mostrar_movimientos_posibles();             //muestra el atributo movimientos_posibles
+	void movimiento(char jugador);
+	void hacer_movimiento(int fila, int columna, int indice, char jugador);                 //modificar tablero con el movimiento
+	
+	
+	void contar_fichas(int *cant_fichas_negro, int *cant_fichas_blanco);                             //Cuenta fichas de cada jugador
+
+}
+
 
 
   	* Por qué usar este esqueleto:
 	1. Estructura Básica: El código establece una estructura básica para el juego. Define una clase juego que contiene métodos para 	inicializar el tablero, verificar movimientos válidos, realizar movimientos, determinar el final del juego y alternar entre 		jugadores.
 	2. Utiliza una matriz dinámica (char **tab) para representar el tablero. Esto es importante para el juego de Othello, ya que el 	tablero es una parte central de la mecánica del juego. Esta matriz se crea de manera dinámica en el constructor y se libera en 		el destructor, lo que es un buen enfoque para la gestión de memoria.
-	3. El código proporciona esqueletos de métodos como verif_movimiento(), movi(), terminacion(), y jugadores(). Estos métodos son 	fundamentales para la lógica del juego y pueden ser completados con las reglas específicas de Othello.
-	4. La función jugar() establece un ciclo de juego que se ejecuta hasta que se cumple una condición de finalización. Así 		mantenemos el flujo del juego.
+	3. El código proporciona esqueletos de métodos necesarios para la finalización exitosa del juego. Estos métodos son 			fundamentales para la lógica del juego y pueden ser completados con las reglas específicas de Othello.
+
 
  	* Función a función
 	 1. Constructor y Destructor de juego:
@@ -206,44 +166,32 @@ Caminos posibles -> Se le debe pasar la estructura.
 	Destructor:
 		Liberar la memoria dinámica utilizada por el tablero.
 	
-	2. Función tablero():
-		Esta función se encarga de configurar el tablero y mostrar su estado inicial en la consola.
-		Podemos implementar un bucle para inicializar el tablero con fichas iniciales y mostrarlo en la consola.
-	3. Función verif_movimiento(int fila, int col):
-		Esta función verifica si un movimiento es válido.
-		Debemos comprobar si la casilla en las coordenadas (fila, col) está vacía y si el movimiento 			produce 		un encierro tipo "sandwich" de fichas del oponente.
-		Devolver true si el movimiento es válido y false en caso contrario.
-	4. Función movi(int fila, int col):
-		Esta función implementa cómo funcionan las fichas en cada movimiento.
-		Debemos realizar las siguientes acciones:
-		Cambiar el color de las fichas según las reglas de Othello.
-		Actualizar el tablero con las nuevas fichas.
-		Realizar cualquier otro procesamiento relacionado con el movimiento. (Mirar reglas de juego)
-	5. Función terminacion():
-		Esta función verifica si el juego ha terminado.
-		Debemos comprobar si no hay movimientos válidos disponibles para ninguno de los jugadores o si el 		tablero 		está completamente lleno.
-		Devuelve false si el juego no ha terminado y true si se cumple alguna de las condiciones de 						finalización.
-	6. Función jugadores():
-		Esta función determina cómo cambian los turnos de los jugadores.
-		Puede ser alternar entre los caracteres p1 y p2 en cada turno.
-	7. Función jugar():
-		Esta función es el bucle principal del juego.
-		Debemos implementar un ciclo while que se ejecuta mientras el juego no 	haya terminado (usando la función terminacion()).
-		En cada iteración del ciclo:
-		Muestra el estado actual del tablero en la consola.
-		Solicita la entrada del jugador para obtener su movimiento.
-		Utiliza verif_movimiento() para verificar si el movimiento es válido.
-		Si es válido, llama a movi() para realizar el movimiento y actualiza el tablero.
-		Cambia el turno de los jugadores llamando a jugadores().
-		Repite hasta que el juego termine.
-		Al final del juego, muestra el resultado final y determina el ganador.
+* Descripcion de métodos: 
+	1. tablero(): Constructor de la clase, inicializa el tablero de juego y otros atributos.
+	2. ~tablero(): Destructor de la clase, se encarga de liberar la memoria asignada dinámicamente para el tablero y otros atributos.
+	3. redimensionar(): Método para redimensionar el espacio de memoria asignado para almacenar movimientos posibles.
+	4. push_back_mov(int elemento, int dir): Agrega un movimiento posible al conjunto de movimientos.
+	5. get_tamaño(): Obtiene el tamaño actual del conjunto de movimientos.
+	6. vaciar_movimientos(): Limpia la lista de movimientos.
+	7. imprimir_tablero(): Imprime el tablero de juego en la consola.
+	8. calcular_mov_legales(char jugador): Calcula los movimientos legales para un jugador en el tablero.
+	9. calcular_mov_valido(int fila, int columna, char jugador): Evalúa si un movimiento es válido para una ficha en una posición 		dada.
+	10. mostrar_movimientos_posibles(): Muestra en la consola los movimientos posibles.
+	11. movimiento(char jugador): Solicita al usuario un movimiento y lo procesa en el tablero.
+	12. hacer_movimiento(int fila, int columna, int indice, char jugador): Modifica el tablero con el movimiento realizado por un 		jugador.
+	13. contar_fichas(int *cant_fichas_negro, int *cant_fichas_blanco): Cuenta las fichas de cada jugador en el tablero.
+
 
 * Decisiones de atributos de la clase 
 
 	Miembros en public:
-	Constructor y Destructor (juego() y ~juego()): Estos métodos son típicamente públicos porque deben ser accesibles desde fuera de 	la clase para crear y destruir objetos de la clase juego. Los usuarios del objeto necesitan poder crear instancias del juego y 		liberar los recursos asociados cuando ya no son necesarios.
-	
-	Función jugar(): Esta función define el punto de entrada del juego y es la interfaz principal a través de la cual se inicia y se 	ejecuta el juego. Debe ser pública para permitir que los usuarios del objeto inicien y jueguen una partida de Othello.
-	
+	Constructor y Destructor (tablero() y ~tablero()): Estos métodos son típicamente públicos porque deben ser accesibles desde 		fuera de la clase para crear y destruir objetos de la clase tablero. Los usuarios del objeto necesitan poder crear instancias 		del juego y liberar los recursos asociados cuando ya no son necesarios.	
 	Métodos privados (tablero(), verif_movimiento(), movi(), terminacion(), jugadores()): Estos métodos son privados porque son 		utilizados internamente por la clase para implementar la lógica del juego. Los usuarios del objeto de juego no necesitan conocer 	los detalles de implementación de estas funciones, ya que su interacción con el juego se realiza a través de la función pública 	jugar(). Mantener estos métodos como privados ayuda a encapsular la lógica del juego y evita el acceso no deseado a partes 		internas de la clase.
 
+* Problemas afrontados en del desarrollo
+  	- Diseño y Estructura del Proyecto: Decidir cómo organizar y estructurar el proyecto para manejar eficientemente las clases y 		los componentes del juego
+  	- Implementación de las Reglas del Juego: Garantizar que las reglas del juego, incluyendo la colocación de fichas y las 		inversiones de fichas, se implementen 	de manera correcta
+  	- Actualizacion correcta del tablero despues de cada movimiento
+  	- Algoritmos de Búsqueda de Movimientos Legales: Desarrollar algoritmos para determinar los movimientos legales disponibles en 		el tablero, lo que puede ser 	complejo debido a las reglas de Othello.
+  	- Manejo de la Memoria: Evitar problemas de gestión de memoria, como fugas de memoria, al trabajar con estructuras de datos 		dinámicas, como el tablero.
+  	- Registro de Partidas: Implementar correctamente la funcion que guarda registro de las partidas, al igual que mostrar 			amigablemente por consola el historial 	de partidas
