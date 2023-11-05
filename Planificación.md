@@ -120,34 +120,32 @@ Caminos posibles -> Se le debe pasar la estructura.
 Esqueleto del código:
 #include <iostream>
 using namespace std;
+				
+		class tablero{
+		private:
+			char **tab;		//Tablero
+			int *movimientos_posibles;      //almacena par de datos en forma de fila, columna, fila,...
+			int *direccion;                 //almacena par de coordenadas que indican dirección del movimiento
+			int capacidad;          //capacidad de movimientos posibles
+			int tamaño;             //cantidad de elementos
 		
-class tablero{
-private:
-	char **tab;		//Tablero
-	int *movimientos_posibles;      //almacena par de datos en forma de fila, columna, fila,...
-	int *direccion;                 //almacena par de coordenadas que indican dirección del movimiento
-	int capacidad;          //capacidad de movimientos posibles
-	int tamaño;             //cantidad de elementos
-
-public:
-	tablero();
-	~tablero();
-	
-	void redimensionar();
-	void push_back_mov(int elemento, int dir);
-	int get_tamaño();
-	void vaciar_movimientos();
-	void imprimir_tablero();			//Función que imprime el tablero de juego
-	void calcular_mov_legales(char jugador);                  	//Comprobar los 8 caminos adyacentes para todas las fichas
-	void calcular_mov_valido(int fila, int columna,char jugador);               //Solo para una ficha y un camino, validar si en esa 	ficha y 										camino es posible ese movimiento
-	void mostrar_movimientos_posibles();             //muestra el atributo movimientos_posibles
-	void movimiento(char jugador);
-	void hacer_movimiento(int fila, int columna, int indice, char jugador);                 //modificar tablero con el movimiento
-	
-	
-	void contar_fichas(int *cant_fichas_negro, int *cant_fichas_blanco);                             //Cuenta fichas de cada jugador
-
-}
+		public:
+			tablero();
+			~tablero();
+			
+			void redimensionar();
+			void push_back_mov(int elemento, int dir);
+			int get_tamaño();
+			void vaciar_movimientos();
+			void imprimir_tablero(); //Función que imprime el tablero de juego
+			void calcular_mov_legales(char jugador); //Comprobar los 8 caminos adyacentes para todas 											las fichas
+			void calcular_mov_valido(int fila, int columna,char jugador); //Solo para una ficha y un camino, 											validar si en esa ficha y camino es posible ese 													movimiento
+			void mostrar_movimientos_posibles(); //muestra el atributo movimientos_posibles
+			void movimiento(char jugador);
+			void hacer_movimiento(int fila, int columna, int indice, char jugador); //modificar tablero con																el movimiento
+			void contar_fichas(int *cant_fichas_negro, int *cant_fichas_blanco); //Cuenta fichas de cada jugador
+		
+		}
 
 
 
@@ -184,9 +182,13 @@ public:
 
 * Decisiones de atributos de la clase 
 
-	Miembros en public:
-	Constructor y Destructor (tablero() y ~tablero()): Estos métodos son típicamente públicos porque deben ser accesibles desde 		fuera de la clase para crear y destruir objetos de la clase tablero. Los usuarios del objeto necesitan poder crear instancias 		del juego y liberar los recursos asociados cuando ya no son necesarios.	
-	Métodos privados (tablero(), verif_movimiento(), movi(), terminacion(), jugadores()): Estos métodos son privados porque son 		utilizados internamente por la clase para implementar la lógica del juego. Los usuarios del objeto de juego no necesitan conocer 	los detalles de implementación de estas funciones, ya que su interacción con el juego se realiza a través de la función pública 	jugar(). Mantener estos métodos como privados ayuda a encapsular la lógica del juego y evita el acceso no deseado a partes 		internas de la clase.
+	Métodos públicos:
+	Constructor (tablero()): Debe ser público para permitir la creación de objetos de la clase desde fuera. Los usuarios necesitan 		poder instanciar un objeto de la clase para comenzar a jugar.
+	Destructor (~tablero()): Al igual que el constructor, el destructor debe ser público para permitir a los usuarios de la clase 		liberar los recursos adecuadamente cuando ya no se necesitan objetos de la clase. Esto es importante para evitar fugas de 		memoria.
+	Redimensionar(), push_back_mov(), get_tamaño(), vaciar_movimientos(): Estos métodos están relacionados con la gestión interna de 	los movimientos posibles y el tablero. Sin embargo, se han hecho públicos para permitir que otros componentes del programa 		interactúen con ellos si es necesario. Esto puede ser útil si, por ejemplo, deseas permitir que otras partes del programa 		consulten o modifiquen los movimientos posibles o el tablero directamente.
+
+	Métodos privados:
+	Imprimir_tablero(), calcular_mov_legales(), calcular_mov_valido(), mostrar_movimientos_posibles(), movimiento(), 			hacer_movimiento(), contar_fichas(): Estos métodos son específicos de la lógica del juego de Othello y se utilizan para 		gestionar la mecánica del juego. No es necesario que los usuarios de la clase conozcan los detalles de implementación de estos 		métodos. Hacerlos privados ayuda a encapsular la lógica del juego y evita el acceso no deseado a partes internas de la clase. 		Además, mejora la modularidad y facilita futuros cambios en la implementación de estos métodos sin afectar a los usuarios de la 	clase.
 
 * Problemas afrontados en del desarrollo
   	- Diseño y Estructura del Proyecto: Decidir cómo organizar y estructurar el proyecto para manejar eficientemente las clases y 		los componentes del juego
@@ -195,3 +197,6 @@ public:
   	- Algoritmos de Búsqueda de Movimientos Legales: Desarrollar algoritmos para determinar los movimientos legales disponibles en 		el tablero, lo que puede ser 	complejo debido a las reglas de Othello.
   	- Manejo de la Memoria: Evitar problemas de gestión de memoria, como fugas de memoria, al trabajar con estructuras de datos 		dinámicas, como el tablero.
   	- Registro de Partidas: Implementar correctamente la funcion que guarda registro de las partidas, al igual que mostrar 			amigablemente por consola el historial 	de partidas
+
+* Enlace video en Youtube: https://youtu.be/0ruz8ohCnuA
+  
